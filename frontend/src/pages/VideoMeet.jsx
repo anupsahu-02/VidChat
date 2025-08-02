@@ -20,7 +20,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-const server_url = "http://localhost:3000";
+import server from "../environment";
+
+const server_url = server;
 
 let connections = {};
 

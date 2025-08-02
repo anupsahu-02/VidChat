@@ -3,8 +3,10 @@ import axios from "axios";
 
 export const UserContext = createContext({});
 
+import server from '../environment'
+
 const client = axios.create({
-    baseURL: "http://localhost:3000/api/v1/users"
+    baseURL: `${server}/api/v1/users`
 });
 
 
