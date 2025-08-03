@@ -73,11 +73,6 @@ function VideoMeet() {
 
     let [videos, setVideos] = useState([]);
 
-    // TODO
-    // if(isChrome === false) {
-
-    // }
-
     useEffect(() => {
         console.log("HELLO");
         getPermissions();
@@ -225,7 +220,7 @@ function VideoMeet() {
     let addMessage = (data, sender, socketIdSender) => {
         setMessages((prevMessage) => [
             ...prevMessage,
-            { sender: sender, data : data }
+            { sender: sender, data: data }
         ]);
 
         if (socketIdSender !== socketIdRef.current) {
@@ -343,6 +338,9 @@ function VideoMeet() {
     }
 
     let connect = () => {
+        if(username.length < 1) {
+            return;
+        }
         setAskForUsername(false);
         getMedia();
     }
@@ -432,13 +430,13 @@ function VideoMeet() {
     }
 
     useEffect(() => {
-        if(chatRef.current) {
+        if (chatRef.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
     }, [messages, showModal])
 
     let handleSendMessage = (e) => {
-        if(e.key === "Enter" && message.length > 0) {
+        if (e.key === "Enter" && message.length > 0) {
             sendMessage();
         }
     }
@@ -460,6 +458,7 @@ function VideoMeet() {
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                         variant="outlined"
+                                        required
                                     />
                                 </div>
                                 <div>
@@ -469,7 +468,7 @@ function VideoMeet() {
                                 </div>
                             </div>
                             <div>
-                                <video style={{borderRadius : "15px"}} ref={localVideoRef} autoPlay muted></video>
+                                <video style={{ borderRadius: "15px" }} ref={localVideoRef} autoPlay muted></video>
                             </div>
                         </CardContent>
                     </Card>
@@ -481,20 +480,12 @@ function VideoMeet() {
                         <div className={styles.chatRoom}>
 
                             <div className={styles.chatContainer}>
-                                    <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 24, p:1 }}>
-                                        Chat
-                                    </Typography>
+                                <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 24, pl:1 }}>
+                                    Chat
+                                </Typography>
 
                                 <div ref={chatRef} className={styles.chattingDisplay}>
                                     {messages.length > 0 ? messages.map((item, index) => (
-                                        // <div style={{ paddingBottom: "15px" }} key={index}>
-                                        //     <div>
-                                        //         <p style={{ fontWeight: "bold", paddingBottom: "4px" }}>{item.sender}</p>
-                                        //         <div>
-                                        //             <p style={{ width: "100%" , wordBreak: "break-word"}}>{item.data}</p>
-                                        //         </div>
-                                        //     </div>
-                                        // </div>
                                         <div>
                                             <Card key={index} sx={{ minWidth: 275, mb: 0.3 }}>
                                                 <CardContent>
@@ -513,16 +504,16 @@ function VideoMeet() {
                                 </div>
 
                                 <div className={styles.chattingArea}>
-                                        <input 
-                                            type="text"
-                                            placeholder="Enter Message"
-                                            required={true} 
-                                            onChange={(e) => setMessage(e.target.value)} 
-                                            value={message} 
-                                            onKeyDown={handleSendMessage}
-                                        />
+                                    <TextField
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        value={message}
+                                        placeholder="Enter Message"
+                                        onKeyDown={handleSendMessage}
+                                        fullWidth
+                                        required
+                                    />
 
-                                    <Button variant="contained" onClick={message.length > 0 ? sendMessage : () => {}}>
+                                    <Button variant="contained" onClick={message.length > 0 ? sendMessage : () => { }}>
                                         Send
                                     </Button>
                                 </div>

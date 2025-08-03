@@ -19,7 +19,7 @@ function LandingPage() {
                 </div>
                 <div className='navLists'>
                     <p onClick={() => {
-                        router(`/meet/${getRandom()}`)
+                        router(`/${getRandom()}`)
                     }}>Join as guest</p>
                     <p onClick={() => {
                         router("/auth")

@@ -12,13 +12,21 @@ import { UserContext } from "../contexts/UserContext";
 function Home() {
 
     let navigate = useNavigate();
-    let [meetingCode, setMeetingCode] = useState("");
+    let [meetingCode, setMeetingCode] = useState();
 
     let { getUserHistory, addToActivity} = useContext(UserContext); 
 
+    let [error, setError] = useState();
+
     let handleJoinVideoCall = () => {
-        addToActivity(localStorage.getItem("token"), meetingCode);
-        navigate(`/${meetingCode}`);
+        console.log(typeof(meetingCode))
+        if(meetingCode >= 10000) {
+            addToActivity(localStorage.getItem("token"), meetingCode);
+            navigate(`/${meetingCode}`);
+            setError("");
+        } else {
+            setError("Min. numbers : 5");
+        }
     }
 
     let handleLogout = () => {
@@ -32,7 +40,11 @@ function Home() {
 
     let getRandom = () => {
         let code = Math.floor(Math.random() * 900000000) + 1;
+        if(code < 10000) {
+            getRandom();
+        }
         setMeetingCode(code);
+        setError("");
     }
 
     return (
@@ -56,13 +68,14 @@ function Home() {
                 <div className={style.inputField}>
                     <h2 style={{marginBottom : "20px"}}>Providing Quality Video Call Just Like Quality Education</h2>
                     <TextField
+                        type="number"
                         variant="outlined"
                         value={meetingCode}
                         onChange={(e) => setMeetingCode(e.target.value)}
                         placeholder="Meeting Code" >
                     </TextField>
-
                     <Button onClick={handleJoinVideoCall} variant="contained">JOIN</Button>
+                    <p style={{color : "red"}}>{error}</p>
                     <div>
                         <p style={{textDecoration : "underline" , marginTop: "20px", color : "gray", cursor : "pointer"}} onClick={getRandom}>Generate Random code?</p>
                     </div>

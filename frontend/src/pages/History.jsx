@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 
 import { useNavigate } from "react-router-dom";
 
+import imgNoData from '../assets/unDrawNoData.png'
+
 function History() {
 
     const { getUserHistory } = useContext(UserContext);
@@ -38,7 +40,7 @@ function History() {
 
     return ( 
         <div>
-            <IconButton onClick={() => {navigate("/home")}}>
+            <IconButton style={{height: "50px"}} onClick={() => {navigate("/home")}}>
                 <HomeIcon/>
             </IconButton>
 
@@ -56,7 +58,10 @@ function History() {
                         </Typography>
                     </CardContent>
                 </Card>
-            )) : <></>}
+            )) : <div style={{display : "flex", flexDirection: "column", alignItems: "center", marginTop: "100px"}}>
+                    <h1>No Data</h1>
+                    <img style={{height: "50vh"}} src={imgNoData} alt="" />
+                </div>}
         </div>
      );
 }
