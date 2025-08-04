@@ -16,9 +16,13 @@ import Badge from "@mui/material/Badge";
 import ChatIcon from '@mui/icons-material/Chat';
 import { useNavigate } from "react-router-dom";
 
+import GroupIcon from '@mui/icons-material/Group';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+
+import Snackbar from "@mui/material/Snackbar";
 
 import server from "../environment";
 
@@ -72,6 +76,8 @@ function VideoMeet() {
     const videoRef = useRef([]);
 
     let [videos, setVideos] = useState([]);
+
+    let [totalUsers, setTotalUsers] = useState(0);
 
     useEffect(() => {
         console.log("HELLO");
@@ -457,6 +463,7 @@ function VideoMeet() {
                                         label="Username"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
+                                        onKeyDown={(e) => (e.key === "Enter" ? connect() : {})}
                                         variant="outlined"
                                         required
                                     />
@@ -468,7 +475,7 @@ function VideoMeet() {
                                 </div>
                             </div>
                             <div>
-                                <video style={{ borderRadius: "15px" }} ref={localVideoRef} autoPlay muted></video>
+                                <video className={styles.setUpVideo} style={{ borderRadius: "15px" }} ref={localVideoRef} autoPlay muted></video>
                             </div>
                         </CardContent>
                     </Card>
@@ -522,6 +529,8 @@ function VideoMeet() {
                         : <></>}
 
                     <div className={styles.buttonsConatainer} >
+                        <p style={{color : "wheat", position : "absolute", left: 20, bottom : 0, fontSize: "12px"}}><GroupIcon style={{fontSize: "25px", position: "absolute", left: -25, bottom : -8}}/>{videos.length}</p>
+                            
                         <IconButton onClick={handleEndCall} style={{ color: "red" }}>
                             <CallEndIcon />
                         </IconButton>
@@ -544,24 +553,26 @@ function VideoMeet() {
                                 <ChatIcon />
                             </IconButton>
                         </Badge>
-
                     </div>
 
-                    <video className={styles.meetVideoUser} ref={localVideoRef} autoPlay muted></video>
+                    
 
-                    <div className={styles.conferenceView}>
-                        {videos.map((video) => (
-                            <video className={styles.videos}
-                                data-socket={video.socketId}
-                                ref={ref => {
-                                    if (ref && video.stream) {
-                                        ref.srcObject = video.stream;
-                                    }
-                                }}
-                                autoPlay
-                            ></video>
-                            // </div>
-                        ))}
+                    <video className={showModal ? styles.phoneVideoUser : styles.meetVideoUser} ref={localVideoRef} autoPlay muted></video>
+
+                    <div className={styles.conferenceViewContainer}>
+                        <div className={styles.conferenceView}>
+                            {videos.map((video) => (
+                                <video className={styles.videos}
+                                    data-socket={video.socketId}
+                                    ref={ref => {
+                                        if (ref && video.stream) {
+                                            ref.srcObject = video.stream;
+                                        }
+                                    }}
+                                    autoPlay
+                                ></video>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}

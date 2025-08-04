@@ -12,7 +12,43 @@
     padding-inline: 20px;
 }
 
+
 .inputField button {
     margin-left: 10px;
     height: 55px ;
+}
+
+@media (max-width : 391px) {
+    .homeContainer {
+        background-color: #f9f9f9;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .homeMain {
+        padding: 10px;
+        margin-top: 50px;
+        margin-left: 10px;
+    }
+
+    .imgDiv {
+        display: none;
+    }
+
+    .navContainer div h1 {
+        font-size: 30px;
+        color: #0000008a;
+    }
+    .navContainer {
+        padding-bottom: 10px;
+        border-bottom: 1px solid black;
+    }
+
+    .inputField h2 {
+        opacity: 0.8;
+        color: rgb(135, 134, 127);
+        line-height: 35px;
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
 }

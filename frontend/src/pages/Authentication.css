@@ -16,3 +16,26 @@
     margin-top: 5%;
     text-align: center;
 }
+
+@media (max-width: 391px) {
+
+    .Auth-container {
+        overflow: hidden;
+    }
+
+    .Auth {
+        display: none;
+    }
+
+    .Auth-rout {
+        height: 100%;
+        width: 100%;
+        margin-top: 5%;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .lockOutIcon {
+        display: none;
+    }
+}

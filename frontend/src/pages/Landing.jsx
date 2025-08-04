@@ -15,7 +15,7 @@ function LandingPage() {
         <div className="LandingPageContainer">
             <nav>
                 <div className='navHeader'>
-                    VidChat
+                    <p>VidChat</p>
                 </div>
                 <div className='navLists'>
                     <p onClick={() => {
@@ -35,6 +35,7 @@ function LandingPage() {
             <div className="landingMainContainer">
                 <div className='mainDescription'>
                     <h1><span style={{color : '#d97500'}}>Connect</span> With your <br /> Loved Onces</h1>
+                    <h4 className="mainDescriptionHeader" ><span style={{ color: '#d97500' }}>Connect</span> With your Loved Onces</h4>
                     <p>Cover a distance by VidChat</p>
                     <div role='button'>
                         <Link to={"/home"}>Get Started</Link>

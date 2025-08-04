@@ -82,7 +82,7 @@ function Home() {
                 </div>
                 
 
-                <div>
+                <div className={style.imgDiv}>
                     <img src={Img1} style={{width : "90vh"}}/>
                 </div>
             </div>

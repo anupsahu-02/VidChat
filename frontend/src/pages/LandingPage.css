@@ -34,6 +34,10 @@
     display: flex;
 }
 
+.mainDescriptionHeader {
+    display: none;
+} 
+
 .landingMainContainer .mainDescription {
     padding-inline: 2rem;
     height: 90vh;
@@ -66,4 +70,59 @@
     height: 90%;
     width: auto;
     padding-bottom: 2rem;
+}
+
+
+@media (max-width : 391px) {
+    .landingMainContainer, .LandingPageContainer {
+        overflow : hidden;
+
+    }
+
+    .navHeader p {
+        display: none;
+    }
+    
+    .LandingPageContainer .navLists {
+        display: flex;
+        gap: 0.2;
+    }
+    
+    .LandingPageContainer .navLists p {
+        color: white;
+        font-size: large;
+        cursor: pointer;
+    }
+
+    .LandingPageContainer {
+        height: 100vh;
+        width: 100vw; 
+        background-image: url("../assets/background.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .mainImg {
+        display: none;
+    }
+
+    .landingMainContainer {
+        display: block;
+        width: 100%;
+    }
+
+    .landingMainContainer .mainDescription {
+        display: flex;
+        width: 100%;
+    }
+
+    .mainDescription h1 {
+        /* font-size: 17px; */
+        display:none;
+        width: 100%;
+    }
+
+    .mainDescriptionHeader {
+        display: inline;
+    } 
 }

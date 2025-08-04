@@ -74,15 +74,23 @@ function Authentication() {
         }
     };
 
+    let handleEnterButton = (e) => {
+        if(e.key === "Enter") {
+            handleAuth();
+        }
+    }
+
     return (
         <>
             <div className="Auth-container">
                 <div className="Auth"></div>
                 <div className="Auth-rout">
                     <div style={{ marginBottom: "30px" }}>
-                        <Avatar sx={{ ml: 40, mb: 3, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
+                        <div className="lockOutIcon">
+                            <Avatar sx={{ ml: 40, mb: 3, bgcolor: 'secondary.main' }}>
+                                <LockOutlinedIcon />
+                            </Avatar>
+                        </div>
                         <Button variant={formState === 0 ? "contained" : ""} style={{ color: "black" }} onClick={() => { setFormState(0) }}>
                             Sign In
                         </Button>
@@ -120,6 +128,7 @@ function Authentication() {
                         <div style={{ margin: "20px", width: "90%" }}>
                             <TextField
                                 onChange={(e) => setPassword(e.target.value)}
+                                onKeyDown={handleEnterButton}
                                 value={password}
                                 placeholder="password"
                                 id="password"
